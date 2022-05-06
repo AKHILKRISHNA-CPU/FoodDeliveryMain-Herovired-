@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="FooYes - Quality delivery or takeaway food">
+    <meta name="author" content="Ansonika">
+    <title>FooYes - Quality delivery or takeaway food</title>
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
+
+    <!-- GOOGLE WEB FONT -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- BASE CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- SPECIFIC CSS -->
+    <link href="css/order-sign_up.css" rel="stylesheet">
+
+    <!-- YOUR CUSTOM CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+    
+</head>
+
+<body id="register_bg">
+	
+	<div id="register">
+		<aside>
+			<figure>
+				<a href="/"><img src="img/logo_sticky.svg" width="140" height="35" alt=""></a>
+			</figure>
+			<!-- <div class="access_social">
+					<a href="#0" class="social_bt facebook">Login with Facebook</a>
+					<a href="#0" class="social_bt google">Login with Google</a>
+				</div>
+            <div class="divider"><span>Or</span></div> -->
+			<form autocomplete="off">
+				<div class="form-group">
+					<input class="form-control" type="email" placeholder="Email" id="email_id">
+					<i class="icon_mail_alt"></i>
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="password" id="password" placeholder="Password" id="pwd_id">
+					<i class="icon_lock_alt"></i>
+				</div>
+				<div class="clearfix add_bottom_15">
+					<div class="checkboxes float-start">
+						
+					</div>
+					<div class="float-end"><a id="forgot" href="/">Forgot Password?</a></div>
+				</div>
+				<a type="button" class="btn_1 gradient full-width" onclick="logindata()">Login Now!</a>
+				<div class="text-center mt-2"><small>Don't have an acccount? <strong><a href="/register">Sign Up</a></strong></small></div>
+			</form>
+			
+		</aside>
+	</div>
+	<!-- /login -->
+	
+	<!-- COMMON SCRIPTS -->
+    <script src="js/common_scripts.min.js"></script>
+    <script src="js/common_func.js"></script>
+    <script src="assets/validate.js"></script>
+
+	<script>
+		function logindata(){
+			var email=document.getElementById("email_id").value;
+			var password=document.getElementById("pwd_id").value;
+			if(email_id.length<=0){
+    document.getElementById("message1").innerHTML="!Please enter email"
+    email_id.focus();
+
+}
+else if(password.length<=0){
+    document.getElementById("message2").innerHTML="!Please enter password"
+    password.focus();
+   }
+   if (email.length!=0 && password.length!=0){
+       var data ={
+           email : email,
+           password : password
+       }
+       console.log(data);
+
+   }
+   fetch('/logindata',{
+       method:'POST',
+       headers:{
+           'Content-Type' : 'application/json'
+
+       },
+       body:JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('success:', data);
+        window.location.href="/";
+    })
+    .catch((error) =>{
+        alert("Not Valid")
+    }) 
+};
+
+	</script>
+  
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>login & registration</title>
+  <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+  <div class="hero">
+    <div class="form-box">
+      <div class="button-box">
+        <div id="btn"></div>
+       
+        
+      </div>
+    <form>
+      <input type="text" class="input-field" placeholder="email id" required name="uname" id="email_id">
+      <input type="password" class="input-field" placeholder="Password" required name="pswd" id="pwd_id">
+      
+      <button type="button" onclick="admin()"class="submit-btn">Login</button>
+    </form>
+
+    </div>
+
+  </div>
+  <script>
+    
+   function admin(){
+       var email=document.getElementById('email_id').value;
+       var password=document.getElementById('pwd_id').value;
+if(email_id.length<=0){
+    document.getElementById("message1").innerHTML="!Please enter email"
+    email_id.focus();
+
+}
+else if(password.length<=0){
+    document.getElementById("message2").innerHTML="!Please enter password"
+    password.focus();
+   }
+   if (email.length!=0 && password.length!=0){
+       var data ={
+           email : email,
+           password : password
+       }
+       console.log(data);
+
+   }
+   fetch('/admindata',{
+       method:'POST',
+       headers:{
+           'Content-Type' : 'application/json'
+
+       },
+       body:JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('success:', data);
+        window.location.href="/Admin";
+    })
+    .catch((error) =>{
+        alert("Not Valid")
+    }) 
+};
+
+
+  </script>
+    
+</body>
+</html>
